@@ -1,5 +1,10 @@
 <form method="post" action="{% url 'page:CheckPlayer' %}">
     {% csrf_token %}
+    {% for message in messages %}
+        <font color="red" face="consolas">
+        {{ message }} <br>
+        </font>
+    {% endfor %}
     Username: <input type="text" name="username"> <br>
     Password: <input type="text" name="password"> <br>
     <input type="submit" value="Submit">

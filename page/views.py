@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.db import IntegrityError
 from .models import *
 
@@ -56,4 +57,5 @@ class CheckPlayer(View):
             player = Player.objects.get(user=u)
             return render(request, 'page/show_details.html', {'player': player})
         else:
-            return render(request, 'page/fail.html')
+            messages.error(request, 'Invalid Login Credentials!')
+            return render(request, 'page/login.html')
