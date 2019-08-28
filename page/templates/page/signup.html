@@ -1,0 +1,12 @@
+<form method="post" action="{% url 'page:CreatePlayer' %}">
+    {% csrf_token %}
+    Username: <input type="text" name="username"> <br>
+    Password: <input type="text" name="password"> <br>
+    College: <input type="text" name="college"> <br>
+    Mobile Number: <input type="text" name="mobileNo"> <br>
+    Games Won: <input type="number" name="gamesWon"> <br>
+    Games Lost: <input type="number" name="gamesLost"> <br>
+    Games Drawn: <input type="number" name="gamesDrawn"> <br>
+    Points: <input type="number" name="points"> <br>
+    <input type="submit" value="Submit">
+</form>
