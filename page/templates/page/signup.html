@@ -1,4 +1,9 @@
-<form method="post" action="{% url 'page:CreatePlayer' %}">
+<form method="post" action="{% url 'page:Signup' %}">
+    {% for message in messages %}
+        <font color="red" face="consolas">
+        {{username}} {{ message }} <br>
+        </font>
+    {% endfor %}
     {% csrf_token %}
     Username: <input type="text" name="username"> <br>
     Password: <input type="text" name="password"> <br>

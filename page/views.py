@@ -15,14 +15,6 @@ class Signup(View):
     def get(self, request):
         return render(request, 'page/signup.html')
 
-
-class Login(View):
-    def get(self, request):
-        return render(request, 'page/login.html')
-
-
-class CreatePlayer(View):
-
     def post(self, request):
         try:
             u = User.objects.create_user(request.POST["username"], "", request.POST["password"])
@@ -35,16 +27,17 @@ class CreatePlayer(View):
             p.save()
         except IntegrityError:
             username = request.POST["username"]
-            return render(request, 'page/user_exists.html', {'username': username})
+            messages.error(request, ' Already Exists!')
+            return render(request, 'page/signup.html', {'username': username})
         else:
-            return render(request, 'page/index.html')
+            username = request.POST["username"]
+            messages.success(request, ' Successfully Created!')
+            return render(request, 'page/index.html', {'username': username})
 
 
-class CheckPlayer(View):
+class Login(View):
     def get(self, request):
-        if request.user.is_authenticated:
-            player = Player.objects.get(user=request.user)
-            return render(request, 'page/show_details.html', {'player': player})
+        return render(request, 'page/login.html')
 
     def post(self, request):
         un = request.POST["username"]
